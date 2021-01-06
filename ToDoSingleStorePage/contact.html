@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products - RedStore | Ecommerce Website Design</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="stylecont.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo"> <img src="images/logo.png" alt="logo of my website" width="125px"></div>
+                <nav>
+                    <ul id="MenuItems">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="product.html">Products</a></li>
+                        <li><a href="">About</a></li>
+                        <li class="current"><a href="contact.html">contact</a></li>
+                        <li><a href="">Account</a></li>
+                    </ul>
+                </nav>
+                <img src="images/cart.png" width="30px" heigh="30px">
+                <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+        </div>
+    </div> 
+    <div class="containercont">
+        <h1 class="brand">SLAK Contact Design</h1>
+        <div class="wrapper animated bounceInLeft">
+          <div class="company-info">
+            <h3>Contact us!</h3>
+            <ul>
+              <li><i class="fa fa-road"></i> 44 Something st</li>
+              <li><i class="fa fa-phone"></i> (555) 555-5555</li>
+              <li><i class="fa fa-envelope"></i> test@slak.test</li>
+            </ul>
+          </div>
+          <div class="contact">
+            <h3>Email Us</h3>
+            <form id="contactForm">
+              <p>
+                <label>Name</label>
+                <input type="text" name="name" id="name">
+              </p>
+              <p>
+                <label>Company</label>
+                <input type="text" name="company" id="company">
+              </p>
+              <p>
+                <label>Email Address</label>
+                <input type="text" name="email" id="email">
+              </p>
+              <p>
+                <label>Phone Number</label>
+                <input type="text" name="phone" id="phone">
+              </p>
+              <p class="full">
+                <label>Message</label>
+                <textarea name="message" rows="5" id="message"></textarea>
+              </p>
+              <p class="full">
+                <button type="submit">Submit</button>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    <!-- call jquery -->
+<!--     <div class="user">
+        <form id="userForm">
+            <input type="text" name="firstname" placeholder="your first name">
+            <input type="text" name="lastname" placeholder="your last name">
+            <input type="text" name="age" placeholder="your age">
+            <input type="text" name="sex" placeholder="your sex">
+            <button type="submit">Send</button>
+            <span id="error" style="color:red"></span>
+        </form>
+    </div> -->
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <!-- <script src="node_modules/q/q.js"></script> -->
+    <script src="node_modules/bluebird/js/browser/bluebird.js"></script>
+    <script>
+        var form = $('#userForm');
+        var errorSpan = $('#error');
+        var submitRequest;
+        var url = 'http://localhost:8080/ecomm/dddddd';
+        var callSuccess = function (collection){
+            // console.log(response);
+            return collection;
+        }
+        var displayObject = function(collection){
+            var item = collection[0];
+            console.log(item);
+            return item;
+        }
+        var displayName = function (item){
+            console.log(item);
+            console.log(item.first_name + ' ' + item.last_name);
+            return item;
+        }
+        var displayAge = function (item){
+            console.log(item.age);
+        }
+ /*        var errorCallback = function (response){
+            errorSpan.append(response.responseText);
+        } */
+        // error display
+        var catchError = function(e){
+            console.log(e);
+        }
+        var getOptions = {
+            method:'POST',
+            async: true,
+            cache: false
+            // success: successCallback,
+            // error: errorCallback
+        } 
+        
+        // méthode proxy
+        // $.get(url,successCallback);
+        // $.post(url);
+        // methoe ajax
+        form.on('submit', function (e){
+            e.preventDefault();
+            getOptions.data = $(this).serialize();
+            // bluebird lib : promise
+            submitRequest = new Promise (function(resolve,reject){
+                $.ajax(url,getOptions).done(resolve).fail(reject);
+            });
+            $
+            Promise
+               /* .ajax(url, getOptions)
+               .done(callSuccess)  //promise callback */
+               .all(submitRequest)
+               .then(displayObject)
+               .then(displayName)
+               .then(displayAge)
+               .catch(catchError)
+            ;
+            // $.post(url, data, successCallback);
+        });
+        
+    </script>
+
+
+
+ 
+    <!-- footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and IOS Mobile Phone</p>
+                    <div class="app-logo">
+                        <img src="images/play-store.png">
+                        <img src="images/app-store.png">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="images/logo-white.png">
+                    <p>Dolor do eu aliqua officia.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Blog Post</li>
+                        <li>Return Policy</li>
+                        <li>Join Affiliate</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>Youtube</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright 2020 </p>
+        </div>
+    </div>
+    <!-- js for toggle menu -->
+    <script>
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+        function menutoggle(){
+            if( MenuItems.style.maxHeight == "0px")
+            {
+                MenuItems.style.maxHeight = "200px";
+            }
+            else{
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+    </script>
+    
+</body>
+</html>
